@@ -5,6 +5,7 @@ export default function Result() {
 
   let message = "";
   let color = "";
+  
   const status = location.state.status;
   if (status === "pending") {
     message = "Başvurunuz değerlendirme sürecinde.";
@@ -41,7 +42,7 @@ export default function Result() {
             </div>
             <div className="phone text-slate-900 flex justify-between gap-12 ">
               <p>Telefon Numarası:</p>
-              <p className="text-black italic ">{location.state.phone}</p>
+              <p className="text-black italic ">{(location.state.phone)}</p>
             </div>
             <div className="email text-slate-600 flex justify-between gap-12  ">
               <p>Mail Adresiniz:</p>

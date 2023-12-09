@@ -9,6 +9,7 @@ export default function Home() {
   const [isVerified, setVerified] = useState(false);
   const [message, setMessage] = useState();
   const reCaptchaRef = useRef(null);
+  const studentRegexPatter = /^20\d{10}$/;
 
   const handleRecaptchaVerify = (response) => {
     if (response) {
@@ -36,6 +37,15 @@ export default function Home() {
       setMessage("Okul numarası ya da telefon kısmı boş geçilemez!");
       return;
     }
+    if (document.querySelector("#phone").value.length != 10) {
+      setMessage("Telefon numaranınızı belirtilen formatta giriniz!");
+      return;
+    }
+
+    if (!studentRegexPatter.test(document.querySelector("#studentNumber"))) {
+      setMessage("Okul numaranınızı belirtilen formatta giriniz!");
+      return;
+    }
 
     if (!isVerified) {
       setMessage("Lütfen doğrulamayı tamamlayınız!");
@@ -50,7 +60,7 @@ export default function Home() {
         const res = await fetch("/api/application/getApplication", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(formData).trim(),
         });
         const data = await res.json();
         if (data.success === false) {
@@ -88,7 +98,9 @@ export default function Home() {
               <div className={`alertbox flex justify-center items-center gap-2`}>
                 <img src="./notification-bell.png" alt="" className="w-12" />
                 <div className="max-w-sm h-full bg-zinc-300 rounded-full">
-                  <p className="text-xs text-center m-2 ">Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!</p>
+                  <p className="text-xs text-center m-2 ">
+                    Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!
+                  </p>
                 </div>
               </div>
               <p className="text-red-500 font-bold italic">{message}</p>
@@ -134,11 +146,7 @@ export default function Home() {
       <section className={loading ? "visible" : "hidden"}>
         <div className="flex flex-col justify-center max-w-sm p-5 bg-gray-200 rounded-3xl sm:max-w-6xl sm:p-14 sm:min-w-[32rem] sm:min-h-[38.5rem]">
           <div className="flex flex-col gap-4 justify-center items-center">
-            <img
-              src="./loopLogo.png"
-              alt="loopLogo"
-              className="w-36 sm:w-48 my-2 p-6 sm:p-2"
-            />
+            <img src="./loopLogo.png" alt="loopLogo" className="w-36 sm:w-48 my-2 p-6 sm:p-2" />
             <p className="font-bold">Bilgileriniz kontrol ediliyor...</p>
             <img
               src="./loading.gif"
@@ -149,6 +157,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-    
   );
 }
