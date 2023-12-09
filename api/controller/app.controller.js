@@ -29,8 +29,7 @@ export const addApplication = async (req, res, next) => {
 export const getApplication = async (req, res, next) => {
   try {
     const { studentNumber, phone } = req.body; // Örnek giriş metni
-    const application = await Application.findOne({ studentNumber: studentNumber, phone: phone });
-    console.log(application);
+    const application = await Application.findOne({ studentNumber: studentNumber, phone: phone });;
     if (application === null) {
       return next(errorHandler(404, "Başvuru Formu Bulunamadı!"));
     }
