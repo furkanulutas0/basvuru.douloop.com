@@ -2,8 +2,17 @@
 import { errorHandler } from "../utils/error.js";
 
 export const addApplication = async (req, res, next) => {
-  const { fullname, studentNumber, email, phone, department, detail } = req.body
-  const newApplication = new Application({ fullname, studentNumber, email, phone, department, detail });
+  const { fullname, studentNumber, email, phone, department, selectedTeam, status, detail } = req.body;
+  const newApplication = new Application({
+    fullname,
+    studentNumber,
+    email,
+    phone,
+    department,
+    selectedTeam,
+    status,
+    detail,
+  });
   await newApplication
     .save()
     .then(() => {
@@ -18,11 +27,11 @@ export const addApplication = async (req, res, next) => {
     });
 };
 
-
 export const getApplication = async (req, res, next) => {
   try {
-    const { email, phone } = req.body;
-    const application = await Application.find({ email: email, phone: phone });
+    const { studentNumber, phone } = req.body;
+    const application = await Application.findOne({ studentNumber: studentNumber, phone: phone });
+    console.log(application);
     if (application === null) {
       return next(errorHandler("Application not found", 404));
     }

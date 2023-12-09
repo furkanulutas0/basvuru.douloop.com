@@ -5,6 +5,6 @@ const router = express.Router();
 
 // router.get("/getApplication", getApplication);
 router.post("/addApplication", addApplication);
-router.get("/getApplication", getApplication);
+router.post("/getApplication", getApplication);
 
 export default router;
