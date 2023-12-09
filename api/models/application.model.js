@@ -8,7 +8,7 @@ const appPaperSchema = new mongoose.Schema(
     phone: { type: String }, // 5xxxxxxxxx
     department: { type: String }, // Core Yazılım Takımı
     selectedTeam: {type: String, required: true}, // Core Yazılım Takımı
-    detail: { type: String }, // Motivation Letter
+    //detail: { type: String }, // Motivation Letter
     status: { type: String, default: "pending" }, // Pending, Accepted, Rejected
   },
   { timestamps: true }

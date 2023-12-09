@@ -66,7 +66,6 @@ export default function Home() {
             phone: data.data.phone,
             email: data.data.email,
             selectedTeam: data.data.selectedTeam,
-            detail: data.data.detail,
             status: data.data.status,
           },
         });

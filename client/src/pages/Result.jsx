@@ -52,12 +52,6 @@ export default function Result() {
               <p className="text-black italic ">{location.state.selectedTeam}</p>
             </div>
           </div>
-          <div className="motivationLetter p-1">
-            <p className="font-bold">Motivasyon Mektubunuz:</p>
-            <div>
-              <p className="italic">{location.state.detail}</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

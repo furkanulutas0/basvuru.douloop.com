@@ -2,7 +2,7 @@
 import { errorHandler } from "../utils/error.js";
 
 export const addApplication = async (req, res, next) => {
-  const { fullname, studentNumber, email, phone, department, selectedTeam, status, detail } = req.body;
+  const { fullname, studentNumber, email, phone, department, selectedTeam, status } = req.body;
   const newApplication = new Application({
     fullname,
     studentNumber,
@@ -11,7 +11,6 @@ export const addApplication = async (req, res, next) => {
     department,
     selectedTeam,
     status,
-    detail,
   });
   await newApplication
     .save()
