@@ -1,11 +1,10 @@
 ﻿import express from "express";
+// import { addApplication, getApplication } from "../controller/application.controller.js";
+import { addApplication, getApplication } from "../controller/app.controller.js";
 const router = express.Router();
 
-router.get("/test", (req, res) => {
-  res.json({
-    message: "Hello World",
-  });
-});
+// router.get("/getApplication", getApplication);
+router.post("/addApplication", addApplication);
+router.get("/getApplication", getApplication);
 
 export default router;
-

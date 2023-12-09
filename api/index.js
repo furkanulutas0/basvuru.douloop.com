@@ -20,4 +20,21 @@ app.listen(3000, () => {
   console.log(`Server listening on port http://localhost:3000`);
 });
 
-app.use('/api/application', applicationRouter)
+app.use("/api/application", applicationRouter);
+
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  if (statusCode === 200) {
+    return res.status(200).json({
+      success: true,
+      statusCode,
+      message,
+    });
+  }
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
