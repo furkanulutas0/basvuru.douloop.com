@@ -1,7 +1,6 @@
 ﻿import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Error from "../components/error.comp";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ export default function Home() {
     e.preventDefault();
     if (isVerified) {
       setVerified(false);
-      reCaptchaRef.current.reset(); 
+      reCaptchaRef.current.reset();
     }
 
     if (
@@ -87,11 +86,12 @@ export default function Home() {
             <p className="text-center font-bold my-2">Başvuru Sorgulama Ekranı</p>
             <div className="bg-gradient-to-r from-blue-900 to-purple-500 h-1 w-[75%] rounded-3xl mb-2 " />
             <div className="alertArea flex flex-col items-center gap-4">
-              <Error
-                visible={true}
-                message={
-                  "Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!"
-                }></Error>
+              <div className={`alertbox flex justify-center items-center gap-2`}>
+                <img src="./public/notification-bell.png" alt="" className="w-12" />
+                <div className="max-w-sm h-full bg-zinc-300 rounded-full">
+                  <p className="text-xs text-center m-2 ">Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!</p>
+                </div>
+              </div>
               <p className="text-red-500 font-bold italic">{message}</p>
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col my-2 max-w-sm sm:max-w-6xl">
