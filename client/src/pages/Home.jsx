@@ -117,7 +117,7 @@ export default function Home() {
               <div className="mt-2">
                 <ReCAPTCHA
                   ref={reCaptchaRef}
-                  sitekey="6LeI7CspAAAAAHya3XmzQZsvQ4HheqyUpTBhGLjV"
+                  sitekey="6LcZ8ispAAAAANkODUVFf0jEXKjkkbpfFtlkgdr5"
                   onChange={handleRecaptchaVerify}
                 />
               </div>
