@@ -9,7 +9,6 @@ export default function Home() {
   const [isVerified, setVerified] = useState(false);
   const [message, setMessage] = useState();
   const reCaptchaRef = useRef(null);
-  const studentRegexPatter = /^20\d{10}$/;
 
   const handleRecaptchaVerify = (response) => {
     if (response) {
@@ -41,8 +40,7 @@ export default function Home() {
       setMessage("Telefon numaranınızı belirtilen formatta giriniz!");
       return;
     }
-
-    if (!studentRegexPatter.test(document.querySelector("#studentNumber"))) {
+    if (document.querySelector("#studentNumber").value.length != 12) {
       setMessage("Okul numaranınızı belirtilen formatta giriniz!");
       return;
     }
