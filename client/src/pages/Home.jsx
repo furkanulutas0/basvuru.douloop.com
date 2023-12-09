@@ -78,7 +78,7 @@ export default function Home() {
     }, Math.random() * 1200 + 1200);
   };
   return (
-    <div className="h-screen flex justify-center items-center p-3 ">
+    <div className="h-screen flex flex-col justify-center items-center p-3 ">
       <section className={loading ? "hidden" : "visible"}>
         <div className="max-w-sm p-5 bg-gray-200 rounded-3xl sm:max-w-6xl sm:p-12 ">
           <div className="flex justify-center items-center flex-col">
@@ -127,6 +127,7 @@ export default function Home() {
                 <p className="font-medium  transition-all ease-linear ">Sorgula</p>
               </button>
             </form>
+            <p className="text-sm italic mt-5">Tüm Hakları Saklıdır!</p>
           </div>
         </div>
       </section>
@@ -149,5 +150,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    
   );
 }
