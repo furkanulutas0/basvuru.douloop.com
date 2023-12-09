@@ -19,7 +19,7 @@ export default function Result() {
   return (
 
     <div className="h-screen flex flex-col justify-center items-center gap-8 p-3 ">
-      <img src="./public/loopLogo.png" alt="" className="w-36" />
+      <img src="./loopLogo.png" alt="" className="w-36" />
       <div className="max-w-sm p-5 bg-gray-200 sm:min-w-[36rem] rounded-3xl sm:max-w-6xl sm:p-12">
         <div className="flex flex-col max-w-sm sm:max-w-6xl">
           <div className="flex items-center p-1 gap-8 justify-between">

@@ -82,12 +82,12 @@ export default function Home() {
       <section className={loading ? "hidden" : "visible"}>
         <div className="max-w-sm p-5 bg-gray-200 rounded-3xl sm:max-w-6xl sm:p-12 ">
           <div className="flex justify-center items-center flex-col">
-            <img src="./public/loopLogo.png" alt="loopLogo" className="w-48 my-2" />
+            <img src="./loopLogo.png" alt="loopLogo" className="w-48 my-2" />
             <p className="text-center font-bold my-2">Başvuru Sorgulama Ekranı</p>
             <div className="bg-gradient-to-r from-blue-900 to-purple-500 h-1 w-[75%] rounded-3xl mb-2 " />
             <div className="alertArea flex flex-col items-center gap-4">
               <div className={`alertbox flex justify-center items-center gap-2`}>
-                <img src="./public/notification-bell.png" alt="" className="w-12" />
+                <img src="./notification-bell.png" alt="" className="w-12" />
                 <div className="max-w-sm h-full bg-zinc-300 rounded-full">
                   <p className="text-xs text-center m-2 ">Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!</p>
                 </div>
@@ -135,13 +135,13 @@ export default function Home() {
         <div className="flex flex-col justify-center max-w-sm p-5 bg-gray-200 rounded-3xl sm:max-w-6xl sm:p-14 sm:min-w-[32rem] sm:min-h-[38.5rem]">
           <div className="flex flex-col gap-4 justify-center items-center">
             <img
-              src="./public/loopLogo.png"
+              src="./loopLogo.png"
               alt="loopLogo"
               className="w-36 sm:w-48 my-2 p-6 sm:p-2"
             />
             <p className="font-bold">Bilgileriniz kontrol ediliyor...</p>
             <img
-              src="./public/loading.gif"
+              src="./loading.gif"
               alt="loading"
               className="w-16 max-w-sm sm:max-w-6xl rounded-full hover:w-14 transition-all ease-linear"
             />
