@@ -23,7 +23,7 @@ export const addApplication = async (req, res, next) => {
       });
     })
     .catch((err) => {
-      next(errorHandler(err.status, err.message));
+      next(errorHandler(404, "Application not added"));
     });
 };
 
@@ -33,13 +33,13 @@ export const getApplication = async (req, res, next) => {
     const application = await Application.findOne({ studentNumber: studentNumber, phone: phone });
     console.log(application);
     if (application === null) {
-      return next(errorHandler("Application not found", 404));
+      return next(errorHandler(404, "Başvuru Formu Bulunamadı!"));
     }
     res.status(200).json({
       success: true,
       data: application,
     });
   } catch (err) {
-    next(err);
+    next(501 , "Bir hata oluştu. Tekrar deneyin!");
   }
 };

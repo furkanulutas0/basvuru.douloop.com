@@ -1,44 +1,82 @@
 ﻿import ReCAPTCHA from "react-google-recaptcha";
-import { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Error from "../components/error.comp";
 
 export default function Home() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState();
+  const [isVerified, setVerified] = useState(false);
+  const [message, setMessage] = useState();
+  const reCaptchaRef = useRef(null);
+
+  const handleRecaptchaVerify = (response) => {
+    if (response) {
+      setVerified(true);
+    }
+  };
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isVerified) {
+      setVerified(false);
+      reCaptchaRef.current.reset(); 
+    }
+
+    if (
+      document.querySelector("#studentNumber").value.length == 0 ||
+      document.querySelector("#phone").value.length == 0
+    ) {
+      setMessage("Okul Numarası ya da telefon kısmı boş geçilemez!");
+      return;
+    }
+
+    if (!isVerified) {
+      setMessage("Lütfen doğrulamayı tamamlayınız!");
+      return;
+    }
+
     // document.querySelector(".searchForm").classList.toggle("hidden");
     // document.querySelector(".loadingData").classList.toggle("hidden");
     setLoading(true);
     setTimeout(async () => {
-      
       try {
         const res = await fetch("/api/application/getApplication", {
           method: "POST",
-          headers: { "Content-Type" : "application/json"},
-          body: JSON.stringify(formData)
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
         });
         const data = await res.json();
-        if (data.succes === false) {
+        if (data.success === false) {
           setLoading(false);
+
+          setMessage("Başvuru Bulunamadı!");
           return;
         }
         setLoading(false);
-        navigate("/result", {state: {fullname: data.data.fullname, phone: data.data.phone, email: data.data.email, selectedTeam: data.data.selectedTeam ,detail: data.data.detail, status: data.data.status }})
+        navigate("/result", {
+          state: {
+            fullname: data.data.fullname,
+            phone: data.data.phone,
+            email: data.data.email,
+            selectedTeam: data.data.selectedTeam,
+            detail: data.data.detail,
+            status: data.data.status,
+          },
+        });
       } catch (err) {
+        setMessage(err.message);
         setLoading(false);
-        console.log(err);
+        return;
       }
-    }, Math.random() * (1200) + 1200);
+    }, Math.random() * 1200 + 1200);
   };
   return (
     <div className="h-screen flex justify-center items-center p-3 ">
@@ -48,13 +86,13 @@ export default function Home() {
             <img src="./public/loopLogo.png" alt="loopLogo" className="w-48 my-2" />
             <p className="text-center font-bold my-2">Başvuru Sorgulama Ekranı</p>
             <div className="bg-gradient-to-r from-blue-900 to-purple-500 h-1 w-[75%] rounded-3xl mb-2 " />
-            <div className="alertbox flex justify-center gap-2">
-              <img src="./public/notification-bell.png" alt="" className="w-12" />
-              <div className="max-w-sm h-full bg-zinc-300 rounded-full">
-                <p className="text-xs text-center m-2 ">
-                  Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!
-                </p>
-              </div>
+            <div className="alertArea flex flex-col items-center gap-4">
+              <Error
+                visible={true}
+                message={
+                  "Çekirdek(Core) Takım başvurusu yaparken kullandığınız bilgileri kullanınız!"
+                }></Error>
+              <p className="text-red-500 font-bold italic">{message}</p>
             </div>
             <form onSubmit={handleSubmit} className="flex flex-col my-2 max-w-sm sm:max-w-6xl">
               <p className="text-sm font-bold mt-2">Okul Numaranız:</p>
@@ -78,8 +116,9 @@ export default function Home() {
               />
               <div className="mt-2">
                 <ReCAPTCHA
+                  ref={reCaptchaRef}
                   sitekey="6Lc-RyopAAAAAN7L9GnS_AKwv9oMeW5cL5jNRwTn"
-                  onChange={handleChange}
+                  onChange={handleRecaptchaVerify}
                 />
               </div>
               <button
