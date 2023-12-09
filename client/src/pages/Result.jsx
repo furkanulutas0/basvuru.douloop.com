@@ -2,6 +2,7 @@
 
 export default function Result() {
   const location = useLocation();
+
   let message = "";
   let color = "";
   const status = location.state.status;
@@ -16,6 +17,7 @@ export default function Result() {
     color = "border-red-800 border-2 bg-red-600";
   }
   return (
+
     <div className="h-screen flex flex-col justify-center items-center gap-8 p-3 ">
       <img src="./public/loopLogo.png" alt="" className="w-36" />
       <div className="max-w-sm p-5 bg-gray-200 sm:min-w-[36rem] rounded-3xl sm:max-w-6xl sm:p-12">

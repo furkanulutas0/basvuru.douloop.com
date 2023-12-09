@@ -34,7 +34,7 @@ export default function Home() {
       document.querySelector("#studentNumber").value.length == 0 ||
       document.querySelector("#phone").value.length == 0
     ) {
-      setMessage("Okul Numarası ya da telefon kısmı boş geçilemez!");
+      setMessage("Okul numarası ya da telefon kısmı boş geçilemez!");
       return;
     }
 
@@ -57,7 +57,7 @@ export default function Home() {
         if (data.success === false) {
           setLoading(false);
 
-          setMessage("Başvuru Bulunamadı!");
+          setMessage("Başvuru bulunamadı!");
           return;
         }
         setLoading(false);
@@ -117,7 +117,7 @@ export default function Home() {
               <div className="mt-2">
                 <ReCAPTCHA
                   ref={reCaptchaRef}
-                  sitekey="6Lc-RyopAAAAAN7L9GnS_AKwv9oMeW5cL5jNRwTn"
+                  sitekey="6LeI7CspAAAAAHya3XmzQZsvQ4HheqyUpTBhGLjV"
                   onChange={handleRecaptchaVerify}
                 />
               </div>
