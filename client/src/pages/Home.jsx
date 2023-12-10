@@ -1,4 +1,4 @@
-import ReCAPTCHA from "react-google-recaptcha";
+﻿import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,7 @@ export default function Home() {
       setVerified(true);
     }
   };
+  
   const handleChange = (e) => {
     setFormData({
       ...formData,
