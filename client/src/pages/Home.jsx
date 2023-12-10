@@ -37,7 +37,7 @@ export default function Home() {
       setMessage("Okul numarası ya da telefon kısmı boş geçilemez!");
       return;
     }
-    if (document.querySelector("#phone").value.length != 10 || document.querySelector('#phone').value.lenght != 12) {
+    if (document.querySelector("#phone").value.length != 10) {
       setMessage("Telefon numaranınızı belirtilen formatta giriniz!");
       return;
     }
