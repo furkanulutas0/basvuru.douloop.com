@@ -1,4 +1,4 @@
-﻿import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -120,7 +120,7 @@ export default function Home() {
                 onChange={handleChange}
                 name="phone"
                 id="phone"
-                placeholder="05xxxxxxxxx"
+                placeholder="5xxxxxxxxx"
                 className="p-2 rounded-lg outline-slate-500 border border-slate-800  focus:transition-all"
               />
               <div className="mt-2">
